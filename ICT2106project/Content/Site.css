@@ -1,0 +1,68 @@
+﻿body {
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.toppad {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.mainbg {
+    background-image: url(images/mainbg.jpg);
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+    color: transparent;
+}
+
+/* This section for book index scrollable */
+.wrapper {
+    position: relative;
+    width: auto;
+    height: 200px;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+.scrollContainer {
+    position: absolute;
+    height: 200px;
+}
+.contentContainer {
+    text-align: center;
+    width: 160px;
+    margin-right: 10px;
+    margin-left: 10px;
+    height: 200px;
+    display: inline-block;
+}
+
+.left {
+    text-align: center;
+    cursor: pointer;
+}
+.right {
+    text-align: center;
+    cursor: pointer;
+}

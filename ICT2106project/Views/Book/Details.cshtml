@@ -1,0 +1,149 @@
+﻿@model ICT2106project.Models.Book
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+@if (User.IsInRole("Librarian"))
+{
+    <h2>Books</h2>
+    <div>
+        <h4>Book</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.bookTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.bookTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.bookAuthor)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.bookAuthor)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.bookGenre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.bookGenre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.bookDesc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.bookDesc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.bookISBN10)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.bookISBN10)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.bookISBN13)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.bookISBN13)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.bookType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.bookType)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.bookImage)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.bookImage)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.bookLocation)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.bookLocation)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.bookQuantity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.bookQuantity)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.bookAvailability)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.bookAvailability)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.dateOfLoan)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dateOfLoan)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p><a href='@Url.Action("Index")'>< Back to list</a></p>
+    <div class="row">
+        <div class="col-md-3"><img src="@Model.bookImage" width='100%' height='100%' /></div>
+        <div class="col-md-9">
+            <section>
+                <h2><strong>@Model.bookTitle</strong></h2>
+                by <em>@Model.bookAuthor</em>
+                @if (Model.bookAvailability) { 
+                    <p>Available @@ <em>@Model.bookLocation</em></p>
+                } else
+                {
+                    <p>Un-available currently</p>
+                }
+                <hr />
+                <p>
+                    @Model.bookDesc
+                </p>
+            </section>
+            @if (User.IsInRole("Borrower"))
+            {
+                <div class="pull-right"><a href='@Url.Action("Add", "BorrowCart", new { id = Model.bookID })' class="btn btn-warning">Add to Cart</a></div>
+            }
+        </div>
+    </div>
+}

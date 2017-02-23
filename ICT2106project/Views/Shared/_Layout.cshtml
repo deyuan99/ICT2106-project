@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Library Management System</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+    @if (IsSectionDefined("AddToHead"))
+    {
+        @RenderSection("AddToHead", required: false)
+    }
+
+    @RenderSection("AddToHeadAnotherWay", required: false)
+</head>
+<body>
+    <div class="container toppad">
+        <img src="~/Content/images/logo.jpg" alt="LMS Logo" height="50" width="110" class="pull-left">
+        @Html.ActionLink("Library Management System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        @Html.Partial("_LoginPartial")
+    </div>
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <!--Dynamic display for different types of users-->
+                    @if (User.IsInRole("Librarian"))
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Books", "Index", "Book")</li>
+                        <li>@Html.ActionLink("Pending Loans", "Index", "Loan")</li>
+                        <li>@Html.ActionLink("Returned Books", "Index", "Loan")</li>
+                    }
+                    else if (User.IsInRole("Borrower"))
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Books", "Index", "Book")</li>
+                        <li>@Html.ActionLink("View Loan Period", "Index", "Loan")</li>
+                        <li>@Html.ActionLink("Borrow Cart", "Index", "BorrowCart")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Books", "Index", "Book")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; ICT2106 Project - LMS @DateTime.Now.Year</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

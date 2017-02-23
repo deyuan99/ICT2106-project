@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<!-- View for admins(librarian), users(borrower), public(not logged in)-->
+@if (ViewBag.displayMenu == "Librarian")
+{
+    <div>
+        Hello Librarian - <strong>@ViewBag.Name</strong> !
+    </div>
+}
+else if (ViewBag.displayMenu == "Borrower")
+{
+    <div>
+        Hello Borrower - <strong>@ViewBag.Name</strong> !
+    </div>
+
+    <h2>Current Loans</h2>
+    <div class="row">
+        <div style="text-align:center"><em>[CURRENT LOANS DISPLAYED HERE]</em></div>
+    </div>
+    <hr />
+    <h2>History Loans</h2>
+    <div class="row">
+        <div style="text-align:center"><em>[HISTORY LOANS DISPLAYED HERE]</em></div>
+    </div>
+}
+else
+{
+    <div class="jumbotron mainbg">
+        <h1>Library Management System</h1>
+        <p class="lead">The one and only Library Website you'll ever need to use!</p>
+        <p>If you're reading this, please login or register for an account NOW and start experiencing the journey!!</p>
+        <br />
+    </div>
+
+    <div class="row">
+        <div class="col-md-10">
+            <h2>Popular Books</h2>
+            <p>
+                <div class="row">
+                    <div class="col-md-1">
+                        <br /><br /><br />
+                        <div class="left"><img src="~/Content/images/ArrowLeft.png" width='50px' height='50px' /></div>
+                    </div>
+                    <div class="col-md-10" id="scroller">
+                        <div class="wrapper">
+                            <div class="scrollContainer">
+                                @foreach (var item in Model)
+                                {
+                                    <div class="contentContainer">
+                                        <a href='@Url.Action("Details", "Book", new { id = item.bookID })'><img src="@item.bookImage" width='100%' height='100%' /></a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <br /><br /><br />
+                        <div class="right"><img src="~/Content/images/ArrowRight.png" width='50px' height='50px' /></div>
+                    </div>
+                </div>
+            </p>
+        </div>
+    </div>
+}

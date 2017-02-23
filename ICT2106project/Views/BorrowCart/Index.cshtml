@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ICT2106project.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (User.IsInRole("Borrower"))
+{
+
+<h2>Borrow Cart</h2>
+
+<div class="row">
+    <div class="col-md-offset-1 col-md-10">
+        <table class="table">
+            <tr>
+                <th>
+                    <strong>No.</strong>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.bookTitle)
+                </th>
+                <th></th>
+            </tr>
+            @{ int i = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.bookTitle)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", "Book", new { id = item.bookID }, null) |
+                        @Html.ActionLink("Delete", "Delete", new { id = i })
+                    </td>
+                </tr>
+                i++;
+            }
+
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="pull-right">
+        <a href='@Url.Action("Checkout")' class="btn btn-warning">Check Out</a>
+    </div>
+</div>
+}
+else
+{
+<p><h2>Oops, please login as user before using cart.</h2></p>
+
+}

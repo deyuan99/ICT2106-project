@@ -1,0 +1,128 @@
+﻿@model ICT2106project.Models.Book
+
+@{
+    ViewBag.Title = "Delete";
+}
+@if (User.IsInRole("Librarian"))
+{
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Book</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.bookTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookAuthor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookAuthor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookGenre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookGenre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookISBN10)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookISBN10)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookISBN13)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookISBN13)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookAvailability)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookAvailability)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateOfLoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateOfLoan)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+}
+else
+{
+    <p><h2>Oops, you do not have the permission to view this page.</h2></p>
+
+}
